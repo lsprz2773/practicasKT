@@ -1,7 +1,7 @@
 package com.luisperez.scores_unidad3.domain.model
 
 data class Student(
-    val id: String,
+    val id: Int,
     val name: String,
     val lastName: String,
     val grade: Int,
