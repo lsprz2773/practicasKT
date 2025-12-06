@@ -58,7 +58,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     //Dependencies
-    implementation(libs.coil.compose)
+    implementation("io.coil-kt:coil-compose:2.4.0")
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
     implementation("androidx.activity:activity-compose:1.8.2")
