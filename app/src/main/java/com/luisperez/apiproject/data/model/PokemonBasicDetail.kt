@@ -2,7 +2,7 @@ package com.luisperez.apiproject.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Pokemon (
+data class PokemonBasicDetail (
     val id: Int,
     val name: String,
 

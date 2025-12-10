@@ -17,8 +17,11 @@ import com.luisperez.apiproject.ui.theme.ApiProjectTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
-            Text("Hola Mundo")
+            ApiProjectTheme {
+                NavManager()
+            }
         }
     }
 }

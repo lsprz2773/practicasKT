@@ -13,6 +13,6 @@ sealed class Routes(val route: String, val title: String, val icon: ImageVector)
     object Favorites: Routes("favorites", "Favoritos", Icons.Rounded.Favorite)
 
     object PokemonDetail: Routes("detail/{pokemonId}", "Detalle", Icons.Rounded.Info){
-        fun createRoute(pokemonId: String) = "cetail/$pokemonId"
+        fun createRoute(pokemonId: String) = "detail/$pokemonId"
     }
 }

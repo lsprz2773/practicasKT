@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.luisperez.apiproject.ui.views.FavoritesView
 import com.luisperez.apiproject.ui.views.HomeView
 import com.luisperez.apiproject.ui.views.PokemonDetailView
 import com.luisperez.apiproject.ui.views.SearchView
@@ -64,13 +65,17 @@ fun NavManager(){
             modifier = Modifier.padding(innerPadding)
         ){
             composable(Routes.Home.route) {
-                HomeView()
+                HomeView(onPokemonClick = {pokemonName -> navController.navigate(Routes.PokemonDetail.createRoute(pokemonName))})
             }
             composable(Routes.Search.route) {
-                SearchView()
+                SearchView(
+                    onPokemonFound = { pokemonName ->
+                        navController.navigate(Routes.PokemonDetail.createRoute(pokemonName))
+                    }
+                )
             }
             composable(Routes.Favorites.route) {
-                SearchView()
+                FavoritesView()
             }
             composable(
                 route = Routes.PokemonDetail.route, arguments =
