@@ -56,4 +56,9 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    //Dependencies
+    implementation(libs.gson)
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
 }
