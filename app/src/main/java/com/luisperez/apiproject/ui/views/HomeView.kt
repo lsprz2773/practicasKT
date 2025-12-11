@@ -42,6 +42,7 @@ fun HomeView(onPokemonClick:(String)-> Unit, viewModel: HomeViewModel = viewMode
 @Composable
 fun HomeViewContent(paddingValues: PaddingValues, viewModel: HomeViewModel, onPokemonClick:(String)-> Unit){
     val state by viewModel.uiState.collectAsState()
+    val favoriteIds  by viewModel.favoriteIds.collectAsState()
 
     Box(
         modifier = Modifier
@@ -73,22 +74,34 @@ fun HomeViewContent(paddingValues: PaddingValues, viewModel: HomeViewModel, onPo
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    items(currentState.pokemons){pokemon ->
+                    val pokemons = currentState.pokemons
+
+                    items(pokemons.size) { index ->
+                        val pokemon = pokemons[index]
+
+                        if (index >= pokemons.size - 1) {
+                            androidx.compose.runtime.LaunchedEffect(Unit) {
+                                viewModel.fetchPokemons()
+                            }
+                        }
+
                         val pokemonId = pokemon.url.split("/").dropLast(1).last().toIntOrNull() ?: 0
+
                         PokemonCard(
                             pokemonName = pokemon.name,
                             imageUrl = pokemon.getImageUrl(),
                             pokemonId = pokemonId,
-                            isFavorite = false,
+                            isFavorite = favoriteIds.contains(pokemonId),
                             onPokemonClick = {
                                 onPokemonClick(pokemon.name)
                             },
-                            onFavoriteClick = {}
+                            onFavoriteClick = {
+                                viewModel.toggleFavorite(pokemon)
+                            }
                         )
                     }
                 }
             }
         }
     }
-
 }

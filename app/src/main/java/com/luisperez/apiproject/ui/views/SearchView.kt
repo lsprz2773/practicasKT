@@ -54,7 +54,7 @@ fun SearchView(
     ) {
         Spacer(modifier = Modifier.height(50.dp))
 
-        Text("Busca un Pokomon", style = MaterialTheme.typography.headlineMedium)
+        Text("Busca un Pokemon", style = MaterialTheme.typography.headlineMedium)
 
         Spacer(modifier = Modifier.height(24.dp))
 

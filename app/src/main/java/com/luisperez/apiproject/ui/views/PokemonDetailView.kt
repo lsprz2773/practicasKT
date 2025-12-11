@@ -18,6 +18,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -55,6 +57,8 @@ fun PokemonDetailView(pokemonId: String, onBack: () -> Unit, viewmodel: PokemonD
 
     val state by viewmodel.uiState.collectAsState()
 
+    val isFavorite by viewmodel.isFavorite.collectAsState()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -68,7 +72,24 @@ fun PokemonDetailView(pokemonId: String, onBack: () -> Unit, viewmodel: PokemonD
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+                actions = {
+                    if (state is DetailUiState.Success){
+                        val pokemon = (state as DetailUiState.Success).pokemon
+                        IconButton(
+                            onClick = {
+                                viewmodel.toggleFavorite(pokemon)
+                            }
+                        ) {
+                            Icon(
+                                imageVector = if (isFavorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
+                                contentDescription = "Favorito",
+                                tint = if (isFavorite) Color.Red else Color.White,
+                                modifier = Modifier.size(28.dp)
+                            )
+                        }
+                    }
+                }
             )
         },
         containerColor = MaterialTheme.colorScheme.primaryContainer

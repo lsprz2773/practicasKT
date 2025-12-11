@@ -75,7 +75,11 @@ fun NavManager(){
                 )
             }
             composable(Routes.Favorites.route) {
-                FavoritesView()
+                FavoritesView(
+                    onPokemonClick = { pokemonName ->
+                        navController.navigate("detail/$pokemonName")
+                    }
+                )
             }
             composable(
                 route = Routes.PokemonDetail.route, arguments =

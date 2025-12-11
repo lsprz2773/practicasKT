@@ -71,14 +71,14 @@ fun PokemonCard(
                     onClick = onFavoriteClick,
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(4.dp)
+                        .padding(5.dp)
                         .clip(CircleShape)
                         .background(Color.White.copy(alpha = 0.5f))
                 ) {
                     Icon(
                         imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = "Favorito",
-                        tint = if (isFavorite) Color.Red else Color.Gray,
+                        tint = if (isFavorite) Color.Red else Color.White,
                         modifier = Modifier.size(20.dp)
                     )
                 }
